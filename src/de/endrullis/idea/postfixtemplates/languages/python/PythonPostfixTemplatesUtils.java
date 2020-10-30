@@ -1,8 +1,10 @@
 package de.endrullis.idea.postfixtemplates.languages.python;
 
-import java.util.Set;
-
 import static de.endrullis.idea.postfixtemplates.utils.CollectionUtils._Set;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * Utilities for Python postfix templates.
@@ -10,6 +12,22 @@ import static de.endrullis.idea.postfixtemplates.utils.CollectionUtils._Set;
  * @author Stefan Endrullis &lt;stefan@endrullis.de&gt;
  */
 class PythonPostfixTemplatesUtils {
+
+	static final Map<String, Set<String>> COMPLEX_TYPES;
+
+	static final Set<String> ITERABLE_TYPES = _Set(
+		"list",
+		"dict",
+		"set",
+		"tuple",
+		"frozenset"
+	);
+
+	static {
+		COMPLEX_TYPES = new HashMap<>();
+		// iter
+		COMPLEX_TYPES.put("iter", ITERABLE_TYPES);
+	}
 
 	static final Set<String> PYTHON_TYPES = _Set(
 		"object",
@@ -26,7 +44,8 @@ class PythonPostfixTemplatesUtils {
 		"bool",
 		"classmethod",
 		"staticmethod",
-		"type"
+		"type",
+		"frozenset"
 	);
 
 	/*
